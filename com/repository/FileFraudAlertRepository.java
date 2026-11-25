@@ -63,7 +63,7 @@ public class FileFraudAlertRepository implements FraudAlertRepository {
     private synchronized void persist() throws BankException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
             for (FraudAlert fa : cache) {
-                writer.println(String.format("%d,%s,%d,%.2f,%s,%s,%s,%s",
+                writer.println(String.format(java.util.Locale.US, "%d,%s,%d,%.2f,%s,%s,%s,%s",
                         fa.getAlertId(), fa.getAccountNumber(), fa.getTransactionId(), fa.getAmount(),
                         fa.getReason().replace(",", ";"), fa.getRiskLevel(), fa.getStatus(), fa.getTimestamp()));
             }

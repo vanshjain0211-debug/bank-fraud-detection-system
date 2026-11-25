@@ -61,7 +61,7 @@ public class FileTransactionRepository implements TransactionRepository {
     private synchronized void persist() throws BankException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
             for (Transaction t : cache) {
-                writer.println(String.format("%d,%s,%s,%.2f,%.2f,%s,%s",
+                writer.println(String.format(java.util.Locale.US, "%d,%s,%s,%.2f,%.2f,%s,%s",
                         t.getId(), t.getAccountNumber(), t.getType(), t.getAmount(),
                         t.getBalanceAfter(), t.getRelatedAccount(), t.getTimestamp()));
             }

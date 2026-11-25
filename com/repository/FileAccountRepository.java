@@ -65,11 +65,11 @@ public class FileAccountRepository implements AccountRepository {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
             for (Account a : cache) {
                 if (a instanceof SavingsAccount sa) {
-                    writer.println(String.format("SAVINGS,%s,%s,%.2f,%s,%s,%.2f,%.4f",
+                    writer.println(String.format(java.util.Locale.US, "SAVINGS,%s,%s,%.2f,%s,%s,%.2f,%.4f",
                             sa.getAccountNumber(), sa.getOwnerUsername(), sa.getBalance(),
                             sa.getStatus(), sa.getCreatedAt(), sa.getMinimumBalance(), sa.getInterestRate()));
                 } else if (a instanceof CheckingAccount ca) {
-                    writer.println(String.format("CHECKING,%s,%s,%.2f,%s,%s,%.2f",
+                    writer.println(String.format(java.util.Locale.US, "CHECKING,%s,%s,%.2f,%s,%s,%.2f",
                             ca.getAccountNumber(), ca.getOwnerUsername(), ca.getBalance(),
                             ca.getStatus(), ca.getCreatedAt(), ca.getOverdraftLimit()));
                 }
